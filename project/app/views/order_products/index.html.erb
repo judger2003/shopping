@@ -1,0 +1,16 @@
+<%= form_with url: "/orders", method: "post" do %>
+  <h1>Order Products</h1>
+  <% @products.each do |product| %>
+    <p><%= render Cart.where(user: current_user, product: product).first%></p>
+    <%= hidden_field_tag "products[]", product.id %>
+  <% end %>
+  <% if @selected_shipping_info %>
+    <p>收货地址：<%= render @selected_shipping_info %></p>
+    <%= hidden_field_tag :selected_shipping_info, @selected_shipping_info %>
+    <a href="/order_products/choose">更新你的收获地址</a>
+  <% else %>
+    <a href="/order_products/choose">选择你想要的收获信息</a>
+  <% end %>
+  <%= link_to "back to products", products_read_path %>
+  <%= submit_tag "确认" %>
+<% end %>

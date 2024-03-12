@@ -1,0 +1,9 @@
+<div id="<%= dom_id favorite %>">
+  <p>
+    <strong>Product:</strong>
+    <%= render favorite.product %>
+  </p>
+  <strong>Created:</strong>
+  <%= time_ago_in_words(favorite.created_at) %> ago
+  </p>
+</div>

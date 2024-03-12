@@ -1,0 +1,37 @@
+<%= form_with(model: shipping_info) do |form| %>
+  <% if shipping_info.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(shipping_info.errors.count, "error") %> prohibited this shipping_info from being saved:</h2>
+
+      <ul>
+        <% shipping_info.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :receiver, style: "display: block" %>
+    <%= form.text_field :receiver %>
+  </div>
+
+  <div>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :phone_number, style: "display: block" %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div>
+    <%= form.label :postal_code, style: "display: block" %>
+    <%= form.text_field :postal_code %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

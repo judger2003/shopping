@@ -1,0 +1,37 @@
+<p style="color: green"><%= notice %></p>
+<% @order.order_products.each do |order_product| %>
+  <%=render order_product %>
+<% end %>
+<p>
+  <strong>Receiver:</strong>
+  <%= @order.receiver %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order.address %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @order.phone_number %>
+</p>
+
+<p>
+  <strong>Postal code:</strong>
+  <%= @order.postal_code %>
+</p>
+<div>
+  <!--<%= link_to "Edit this order", edit_order_path(@order) %>--> |
+  <%= link_to "Back to orders", orders_path %>
+    <%if not current_user.has_role? :god%>
+    <%if @order.status == "sending"%>
+    <%= button_to "receive order", receive_order_path(@order) %>
+      <%end %>
+  <%else %>
+    <%if @order.status == "waiting pass" %>
+  <%= button_to "send order", pass_order_path(@order)%>
+      <%end %>
+<%end %>
+  <%=button_to "destroy",@order,method: :delete %>
+    </div>

@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+<div>
+  <%=link_to "favorites" ,favorites_path%>
+</div>
+<div>
+  <%=link_to "carts" ,carts_path%>
+</div>
+<div>
+  <%=link_to "shipping_infos" ,shipping_infos_path%>
+</div>
+<div>
+  <%=link_to "orders" ,orders_path%>
+</div>
+<div>
+  <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary" %>
+</div>
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <p>
+      <%= link_to "Show this product", more_product_path(product) %>
+    </p>
+  <% end %>
+</div>

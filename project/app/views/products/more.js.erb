@@ -1,0 +1,29 @@
+$(document).ready(function() {
+    if (!window.location.href.includes('/products')) {
+        return;
+    }
+    $('#add-to-cart-button').click(function() {
+        $('#add-to-cart-modal').show();
+    });
+
+    $('#cancel-button').click(function() {
+        $('#add-to-cart-modal').hide();
+    });
+
+    $('#confirm-button').click(function() {
+        var quantity = $('#quantity').val();
+        if (quantity > 0) {
+            $.ajax({
+                url: '/carts',
+                method: 'POST',
+                data: {
+                    product_id: $('#add-to-cart-button').data('product-id'),
+                    quantity: quantity
+                },
+                success: function() {
+                    $('#add-to-cart-modal').hide();
+                }
+            });
+        }
+    });
+});

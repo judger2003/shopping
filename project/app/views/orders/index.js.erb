@@ -1,0 +1,10 @@
+$(document).ready(function(){
+    var html = '';
+    <% @orders.each do |order| %>
+    html += "<%= j render order %>" +
+      "<p>" +
+      "<%= j link_to 'Show this order', order %>" +
+      "</p>";
+    <% end %>
+    $("#orders").html(html);
+});

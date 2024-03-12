@@ -1,0 +1,12 @@
+<!-- app/views/order_products/choose.html.erb -->
+<h1>Select Address</h1>
+<%if @shipping_infos %>
+<% @shipping_infos.each do |shipping_info| %>
+  <p>
+    <%= render  shipping_info%>
+    <a href="/order_products/update_address?shipping_info=<%= shipping_info.id %>">选择</a>
+  </p>
+    <% end%>
+<% end %>
+<%=link_to "new shipping info" ,new_shipping_info_path%>
+<a href="/order_products">确认</a>

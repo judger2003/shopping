@@ -1,0 +1,1 @@
+$('#fav').text('<%= current_user.favorite_products.include?(@product) ? '取消收藏' : '收藏' %>');

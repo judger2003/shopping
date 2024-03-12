@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Carts</h1>
+
+<div id="carts">
+  <% @carts.each do |cart| %>
+    <%= render cart %>
+    <input type="checkbox" id="product_<%= cart.product.id %>" value="<%= cart.product.id %>">
+    <p>
+      <%= link_to "Show this cart", cart %>
+    </p>
+  <% end %>
+</div>
+<button id="confirm-button">Confirm</button>
+<%= link_to "Back to products", products_read_path %>
+<!--<%= link_to "New cart", new_cart_path %>-->
+<script>
+    document.getElementById('confirm-button').addEventListener('click', function() {
+        if (!window.location.href.includes('/carts')) {
+            return;
+        }
+        var selectedProducts = [];
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            selectedProducts.push(checkboxes[i].value);
+        }
+
+        window.location.href = '/order_products?product_ids=' + selectedProducts.join(', ');
+    });
+</script>

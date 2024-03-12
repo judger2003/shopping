@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Favorites</h1>
+
+<div id="favorites">
+  <% @favorites.each do |favorite| %>
+    <%= render favorite %>
+    <p>
+      <%= link_to "Show this product", more_product_path(favorite.product) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "Back to products", products_read_path %>
